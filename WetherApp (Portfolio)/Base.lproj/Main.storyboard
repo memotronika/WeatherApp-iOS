@@ -37,9 +37,6 @@
                                     <constraint firstItem="bu3-g6-R5O" firstAttribute="centerY" secondItem="j0i-8d-6jk" secondAttribute="centerY" id="aON-aw-3i0"/>
                                     <constraint firstItem="bu3-g6-R5O" firstAttribute="centerX" secondItem="j0i-8d-6jk" secondAttribute="centerX" id="uai-6F-VdV"/>
                                 </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="IsE-ok-1RC" appends="YES" id="mHE-zu-wOK"/>
-                                </connections>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MGl-Cx-Wks" userLabel="Third Internal View">
                                 <rect key="frame" x="213" y="206" width="240" height="128"/>
@@ -55,6 +52,9 @@
                             <constraint firstAttribute="bottom" secondItem="j0i-8d-6jk" secondAttribute="bottom" constant="70" id="Y5f-ld-aHs"/>
                             <constraint firstAttribute="trailing" secondItem="j0i-8d-6jk" secondAttribute="trailing" constant="50" id="tGk-xf-o2c"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="IsE-ok-1RC" appends="YES" id="pDM-41-qf5"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="firstInternalView" destination="ewc-rZ-7WD" id="AGo-A8-F50"/>

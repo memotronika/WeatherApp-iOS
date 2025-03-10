@@ -24,6 +24,12 @@ class ViewController: UIViewController {
     var internalViews : [String:UIView]!
     
     var middleViewPosition : CGRect!
+    var leftViewPosition : CGRect!
+    var rightViewPosition : CGRect!
+    var leftView : UIView!
+    var rightView : UIView!
+    var middleView : UIView!
+    
     
     
     override func viewDidLoad() {
@@ -33,11 +39,14 @@ class ViewController: UIViewController {
         
         internalViews = ["left":firstInternalView,"middle":secondInternalView,"right":thirdInternalView]
         middleViewPosition = secondInternalView.frame
-        print(middleViewPosition)
         for view in internalViews{
             setViewPosition(view: view.value, side: view.key)
-            
         }
+        leftViewPosition = firstInternalView.frame
+        rightViewPosition = thirdInternalView.frame
+        leftView = firstInternalView
+        rightView = thirdInternalView
+        middleView = secondInternalView
     }
 
     
@@ -46,55 +55,65 @@ class ViewController: UIViewController {
     
     
     @IBAction func PanOfInternalView(_ sender: UIPanGestureRecognizer) {
-        let translation = sender.translation(in: secondInternalView)
+        let translation = sender.translation(in: middleView)
+        firstInternalView.center.x += translation.x
         secondInternalView.center.x += translation.x
+        thirdInternalView.center.x += translation.x
+        
         sender.setTranslation(.zero, in: secondInternalView)
         
         if sender.state == .ended {
-            if secondInternalView.frame.minX < -secondInternalView.frame.width / 7 {
-                leftlViewSwipe(object: secondInternalView)
+            if middleView.frame.minX < -secondInternalView.frame.width / 7 {
+                leftlViewSwipe(left: leftView, right: rightView, middle: middleView)
             }
-            else if secondInternalView.frame.maxX > view.frame.width + secondInternalView.frame.width / 7 {
-                rightViewSwipe(object: secondInternalView)
+            else if middleView.frame.maxX > view.frame.width + middleView.frame.width / 7 {
+                rightViewSwipe(left: leftView, right: rightView, middle: middleView)
                 
             }
             else{
                 UIView.animate(withDuration: 0.3) {
-                    self.secondInternalView.frame = self.middleViewPosition
+                    self.middleView.frame = self.middleViewPosition
+                    self.rightView.frame = self.rightViewPosition
+                    self.leftView.frame = self.leftViewPosition
+                    
                 }
             }
-            //
-            
         }
     }
     
-    func leftlViewSwipe(object: UIView) {
+    func leftlViewSwipe(left : UIView, right : UIView, middle : UIView) {
+        var placeholderView : UIView!
         UIView.animate(withDuration: 0.4, animations: {
-            object.frame = CGRect(x: -object.frame.width, y: object.frame.minY, width: object.frame.width, height: object.frame.height)
+            right.frame = self.middleViewPosition
+            middle.frame = CGRect(x: -middle.frame.width, y: middle.frame.minY, width: middle.frame.width, height: middle.frame.height)
+            
         }) { _ in
-            object.frame = CGRect(x: self.view.frame.width + object.frame.width, y: object.frame.minY, width: object.frame.width, height: object.frame.height)
+            left.frame = CGRect(x: self.view.frame.width + left.frame.width, y: left.frame.minY, width: left.frame.width, height: left.frame.height)
             
-            self.viewCounter += 1
-            self.numberLabel.text = String(self.viewCounter)
-            
-            UIView.animate(withDuration: 0.4) {
-                object.frame = self.middleViewPosition
-            }
         }
+        placeholderView = left
+        leftView = middle
+        middleView = right
+        rightView = placeholderView
+        
     }
     
-    func rightViewSwipe(object: UIView) {
+    func rightViewSwipe(left: UIView, right: UIView, middle: UIView) {
+        var placeholderView: UIView!
+        
         UIView.animate(withDuration: 0.4, animations: {
-            object.frame = CGRect(x: self.view.frame.width + object.frame.width, y: object.frame.minY, width: object.frame.width, height: object.frame.height)        }) { _ in
-                object.frame = CGRect(x: -object.frame.width, y: object.frame.minY, width: object.frame.width, height: object.frame.height)
-                
-                self.viewCounter -= 1
-                self.numberLabel.text = String(self.viewCounter)
-                
-                UIView.animate(withDuration: 0.4) {
-                    object.frame = self.middleViewPosition
-                }
-            }
+            left.frame = self.middleViewPosition
+            middle.frame = CGRect(x: self.view.frame.width + middle.frame.width, y: middle.frame.minY, width: middle.frame.width, height: middle.frame.height)
+            
+        }) { _ in
+            right.frame = CGRect(x: -right.frame.width, y: right.frame.minY, width: right.frame.width, height: right.frame.height)
+            
+            // Меняем ссылки на вьюхи
+            placeholderView = right
+            self.rightView = middle
+            self.middleView = left
+            self.leftView = placeholderView
+        }
     }
     func setViewPosition(view: UIView, side : String){
          if side == "left"{
