@@ -41,6 +41,10 @@ class ViewController: UIViewController {
         middleViewPosition = secondInternalView.frame
         for view in internalViews{
             setViewPosition(view: view.value, side: view.key)
+            makeBlurView(view: view.value)
+            view.value.layer.cornerRadius = 25
+            view.value.clipsToBounds = true
+            
         }
         leftViewPosition = firstInternalView.frame
         rightViewPosition = thirdInternalView.frame
@@ -108,7 +112,7 @@ class ViewController: UIViewController {
         }) { _ in
             right.frame = CGRect(x: -right.frame.width, y: right.frame.minY, width: right.frame.width, height: right.frame.height)
             
-            // Меняем ссылки на вьюхи
+            
             placeholderView = right
             self.rightView = middle
             self.middleView = left
@@ -117,14 +121,23 @@ class ViewController: UIViewController {
     }
     func setViewPosition(view: UIView, side : String){
          if side == "left"{
-             view.frame = CGRect(x: -middleViewPosition.width + 5, y: middleViewPosition.minY, width: middleViewPosition.width, height: middleViewPosition.height)
+             view.frame = CGRect(x: -middleViewPosition.width , y: middleViewPosition.minY, width: middleViewPosition.width, height: middleViewPosition.height)
         }
         if side == "right"{
-            view.frame = CGRect(x: self.view.frame.width - 5 , y: middleViewPosition.minY, width: middleViewPosition.width, height: middleViewPosition.height)
+            view.frame = CGRect(x: self.view.frame.width , y: middleViewPosition.minY, width: middleViewPosition.width, height: middleViewPosition.height)
         }
         if side == "middle"{
             view.frame = middleViewPosition
         }
         print(view.frame)
+    }
+    
+    func makeBlurView(view : UIView) {
+        let blurEffect = UIBlurEffect(style: .regular)
+                let blurEffectView = UIVisualEffectView(effect: blurEffect)
+                blurEffectView.frame = view.bounds
+                blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                view.addSubview(blurEffectView)
+                view.backgroundColor = UIColor.clear
     }
 }

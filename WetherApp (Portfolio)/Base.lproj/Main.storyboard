@@ -16,6 +16,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="grad" translatesAutoresizingMaskIntoConstraints="NO" id="jbd-58-PbR">
+                                <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
+                            </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ewc-rZ-7WD" userLabel="First Internal View">
                                 <rect key="frame" x="-104" y="206" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -45,11 +48,14 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="jbd-58-PbR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="8CF-c5-85o"/>
                             <constraint firstItem="j0i-8d-6jk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="50" id="8mI-gj-RIT"/>
+                            <constraint firstItem="jbd-58-PbR" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="D1f-dd-YIO"/>
+                            <constraint firstItem="jbd-58-PbR" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="JlQ-hh-ZAB"/>
                             <constraint firstItem="j0i-8d-6jk" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="50" id="OCr-iX-7bz"/>
                             <constraint firstAttribute="bottom" secondItem="j0i-8d-6jk" secondAttribute="bottom" constant="70" id="Y5f-ld-aHs"/>
+                            <constraint firstAttribute="bottom" secondItem="jbd-58-PbR" secondAttribute="bottom" id="hL3-WN-8X2"/>
                             <constraint firstAttribute="trailing" secondItem="j0i-8d-6jk" secondAttribute="trailing" constant="50" id="tGk-xf-o2c"/>
                         </constraints>
                         <connections>
@@ -70,15 +76,13 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="5.343511450381679" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="4.4776119402985071" y="-2.7459954233409607"/>
         </scene>
     </scenes>
     <resources>
+        <image name="grad" width="3080" height="1732"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemIndigoColor">
             <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
