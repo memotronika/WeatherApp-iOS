@@ -8,40 +8,63 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var numberLabel: UILabel!
     
-    @IBOutlet weak var InternalView: UIView!
+    @IBOutlet weak var firstInternalView: UIView!
+    
+    @IBOutlet weak var secondInternalView: UIView!
+    
+    @IBOutlet weak var thirdInternalView: UIView!
+    
+    
     
     var viewCounter = 5
     
-    var internalViewPosition : CGRect!
+    var internalViews : [String:UIView]!
+    
+    var middleViewPosition : CGRect!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         numberLabel.text = String(viewCounter)
-        internalViewPosition = InternalView.frame
+        
+        
+        internalViews = ["left":firstInternalView,"middle":secondInternalView,"right":thirdInternalView]
+        middleViewPosition = secondInternalView.frame
+        print(middleViewPosition)
+        for view in internalViews{
+            setViewPosition(view: view.value, side: view.key)
+            
+        }
     }
 
+    
+    
+    
+    
+    
     @IBAction func PanOfInternalView(_ sender: UIPanGestureRecognizer) {
-        let translation = sender.translation(in: InternalView)
-        InternalView.center.x += translation.x
-        sender.setTranslation(.zero, in: InternalView)
-       
+        let translation = sender.translation(in: secondInternalView)
+        secondInternalView.center.x += translation.x
+        sender.setTranslation(.zero, in: secondInternalView)
+        
         if sender.state == .ended {
-            if InternalView.frame.minX < -InternalView.frame.width / 7 {
-                leftlViewSwipe(object: InternalView)
+            if secondInternalView.frame.minX < -secondInternalView.frame.width / 7 {
+                leftlViewSwipe(object: secondInternalView)
             }
-            else if InternalView.frame.maxX > view.frame.width + InternalView.frame.width / 7 {
-                rightViewSwipe(object: InternalView)
+            else if secondInternalView.frame.maxX > view.frame.width + secondInternalView.frame.width / 7 {
+                rightViewSwipe(object: secondInternalView)
                 
             }
             else{
                 UIView.animate(withDuration: 0.3) {
-                               self.InternalView.frame = self.internalViewPosition
-                           }
+                    self.secondInternalView.frame = self.middleViewPosition
+                }
             }
-//
-        
+            //
+            
         }
     }
     
@@ -55,7 +78,7 @@ class ViewController: UIViewController {
             self.numberLabel.text = String(self.viewCounter)
             
             UIView.animate(withDuration: 0.4) {
-                object.frame = self.internalViewPosition
+                object.frame = self.middleViewPosition
             }
         }
     }
@@ -63,15 +86,26 @@ class ViewController: UIViewController {
     func rightViewSwipe(object: UIView) {
         UIView.animate(withDuration: 0.4, animations: {
             object.frame = CGRect(x: self.view.frame.width + object.frame.width, y: object.frame.minY, width: object.frame.width, height: object.frame.height)        }) { _ in
-            object.frame = CGRect(x: -object.frame.width, y: object.frame.minY, width: object.frame.width, height: object.frame.height)
-            
-            self.viewCounter -= 1
-            self.numberLabel.text = String(self.viewCounter)
-            
-            UIView.animate(withDuration: 0.4) {
-                object.frame = self.internalViewPosition
+                object.frame = CGRect(x: -object.frame.width, y: object.frame.minY, width: object.frame.width, height: object.frame.height)
+                
+                self.viewCounter -= 1
+                self.numberLabel.text = String(self.viewCounter)
+                
+                UIView.animate(withDuration: 0.4) {
+                    object.frame = self.middleViewPosition
+                }
             }
+    }
+    func setViewPosition(view: UIView, side : String){
+         if side == "left"{
+             view.frame = CGRect(x: -middleViewPosition.width + 5, y: middleViewPosition.minY, width: middleViewPosition.width, height: middleViewPosition.height)
         }
+        if side == "right"{
+            view.frame = CGRect(x: self.view.frame.width - 5 , y: middleViewPosition.minY, width: middleViewPosition.width, height: middleViewPosition.height)
+        }
+        if side == "middle"{
+            view.frame = middleViewPosition
+        }
+        print(view.frame)
     }
 }
-
