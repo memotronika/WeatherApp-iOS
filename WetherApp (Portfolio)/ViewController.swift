@@ -139,5 +139,7 @@ class ViewController: UIViewController {
                 blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
                 view.addSubview(blurEffectView)
                 view.backgroundColor = UIColor.clear
+        view.layer.borderColor = UIColor.black.cgColor
+        view.layer.borderWidth = 1
     }
 }
