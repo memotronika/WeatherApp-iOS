@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var InternalView: UIView!
     
+    
     var viewCounter = 5
     
     var internalViewPosition : CGRect!
@@ -20,6 +21,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         numberLabel.text = String(viewCounter)
         internalViewPosition = InternalView.frame
+        let api = APIRequest()
+        api.performRequest { weather in
+            if let weather = weather {
+                print("Температура: \(weather.temperature)°C")
+            } else {
+                print("Не удалось получить данные")
+            }
+        }
+        
     }
 
     @IBAction func PanOfInternalView(_ sender: UIPanGestureRecognizer) {
