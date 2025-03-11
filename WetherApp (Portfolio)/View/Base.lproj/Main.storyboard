@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina6_3" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,14 +13,22 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="WetherApp__Portfolio_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="grad" translatesAutoresizingMaskIntoConstraints="NO" id="jbd-58-PbR">
+                                <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ewc-rZ-7WD" userLabel="First Internal View">
+                                <rect key="frame" x="-104" y="206" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="linkColor"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j0i-8d-6jk">
-                                <rect key="frame" x="50" y="50" width="293" height="732"/>
+                                <rect key="frame" x="50" y="50" width="302" height="754"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bu3-g6-R5O">
-                                        <rect key="frame" x="120.33333333333336" y="312.33333333333331" width="52.666666666666671" height="107.66666666666669"/>
+                                        <rect key="frame" x="124.66666666666666" y="323" width="53" height="108"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="90"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -32,23 +40,33 @@
                                     <constraint firstItem="bu3-g6-R5O" firstAttribute="centerY" secondItem="j0i-8d-6jk" secondAttribute="centerY" id="aON-aw-3i0"/>
                                     <constraint firstItem="bu3-g6-R5O" firstAttribute="centerX" secondItem="j0i-8d-6jk" secondAttribute="centerX" id="uai-6F-VdV"/>
                                 </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="IsE-ok-1RC" appends="YES" id="mHE-zu-wOK"/>
-                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MGl-Cx-Wks" userLabel="Third Internal View">
+                                <rect key="frame" x="213" y="206" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemRedColor"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="jbd-58-PbR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="8CF-c5-85o"/>
                             <constraint firstItem="j0i-8d-6jk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="50" id="8mI-gj-RIT"/>
+                            <constraint firstItem="jbd-58-PbR" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="D1f-dd-YIO"/>
+                            <constraint firstItem="jbd-58-PbR" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="JlQ-hh-ZAB"/>
                             <constraint firstItem="j0i-8d-6jk" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="50" id="OCr-iX-7bz"/>
                             <constraint firstAttribute="bottom" secondItem="j0i-8d-6jk" secondAttribute="bottom" constant="70" id="Y5f-ld-aHs"/>
+                            <constraint firstAttribute="bottom" secondItem="jbd-58-PbR" secondAttribute="bottom" id="hL3-WN-8X2"/>
                             <constraint firstAttribute="trailing" secondItem="j0i-8d-6jk" secondAttribute="trailing" constant="50" id="tGk-xf-o2c"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="IsE-ok-1RC" appends="YES" id="pDM-41-qf5"/>
+                        </connections>
                     </view>
                     <connections>
-                        <outlet property="InternalView" destination="j0i-8d-6jk" id="eyu-nk-jFi"/>
+                        <outlet property="firstInternalView" destination="ewc-rZ-7WD" id="AGo-A8-F50"/>
                         <outlet property="numberLabel" destination="bu3-g6-R5O" id="Ynz-dW-x4U"/>
+                        <outlet property="secondInternalView" destination="j0i-8d-6jk" id="eyu-nk-jFi"/>
+                        <outlet property="thirdInternalView" destination="MGl-Cx-Wks" id="ySK-BP-igk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -58,15 +76,19 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="5.343511450381679" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="4.4776119402985071" y="-2.7459954233409607"/>
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <image name="grad" width="3080" height="1732"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemIndigoColor">
             <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
