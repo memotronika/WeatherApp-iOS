@@ -64,7 +64,6 @@
                     </view>
                     <connections>
                         <outlet property="firstInternalView" destination="ewc-rZ-7WD" id="AGo-A8-F50"/>
-                        <outlet property="numberLabel" destination="bu3-g6-R5O" id="Ynz-dW-x4U"/>
                         <outlet property="secondInternalView" destination="j0i-8d-6jk" id="eyu-nk-jFi"/>
                         <outlet property="thirdInternalView" destination="MGl-Cx-Wks" id="ySK-BP-igk"/>
                     </connections>

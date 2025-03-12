@@ -8,8 +8,8 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
-    @IBOutlet weak var numberLabel: UILabel!
+    let interfaceBuilder = InterfaceBuilder()
+    var numberLabel = UILabel()
     
     @IBOutlet weak var firstInternalView: UIView!
     
@@ -69,6 +69,28 @@ class ViewController: UIViewController {
             text: "Пример текста"
         )
         view.addSubview(customView)
+        
+        // РЕФАКТОРИ ЭТО!!!
+        numberLabel.translatesAutoresizingMaskIntoConstraints = false // Для работы с Auto Layout
+
+                numberLabel.text = "Hello, World!"
+                numberLabel.font = UIFont.systemFont(ofSize: 24)
+                numberLabel.textColor = .black
+                numberLabel.textAlignment = .center
+
+                // Добавляем в представление (view)
+        middleView.addSubview(numberLabel)
+
+                // Устанавливаем constraints для numberLabel
+                NSLayoutConstraint.activate([
+                    numberLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                    numberLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+                    numberLabel.widthAnchor.constraint(equalToConstant: 200),
+                    numberLabel.heightAnchor.constraint(equalToConstant: 50)
+                ])
+//        ВОТ ДО СЮДА
+        interfaceBuilder.setupInnerView(view : self.view ,insert : Constants.insertSpace)
+
     }
 
     
