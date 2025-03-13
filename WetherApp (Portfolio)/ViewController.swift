@@ -37,7 +37,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         numberLabel.text = String(viewCounter)
-        
+        print("a")
+        print(view.frame.width)
+        print(view.frame.height)
         let api = APIRequest()
         api.performRequest { weather in
             if let weather = weather {

@@ -29,4 +29,21 @@ class InterfaceBuilder {
         innerView.layer.borderColor = UIColor.black.cgColor
         innerView.layer.borderWidth = 1
     }
+    
+    func innerViewBuild() {
+        return
+    }
+    func innerViewToMax(){
+        return
+    }
+    func innerViewToMin(){
+        return
+    }
+    func innerViewToCenter(){
+        return
+    }
+    func staticObjectsBuild(){
+        return
+    }
+    
 }
