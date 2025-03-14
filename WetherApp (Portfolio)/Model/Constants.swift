@@ -17,8 +17,8 @@ struct Constants {
     init(view : UIView) {
         self.view = view
         self.sideGap = view.frame.width / 11
-        self.topGap = view .frame.height / 8
-        self.bottomGap = view.frame.height / 10
+        self.topGap = view .frame.height / 7
+        self.bottomGap = view.frame.height / 13
         self.cornerRadius = view.frame.width / 20
         self.insertSpace = .init(top: topGap, left: sideGap, bottom: bottomGap, right: sideGap)
     }

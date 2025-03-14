@@ -10,13 +10,21 @@ class InterfaceBuilder {
     
     let constants : Constants!
     let view : UIView!
-    init(constants: Constants, view: UIView) {
+    init(constants: Constants, view: UIView, innerViewsQuantity: Int) {
         self.view = view
         self.constants = constants
         
     }
+    public func setupInterface() {
+        setupMainInnerView()
+        setupOtherInnerViews()
+        setupStaticObjects()
+        
+        
+        
+    }
     
-    public func setupInnerView() {
+    private func setupMainInnerView() {
         let innerView = UIView()
         innerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(innerView)
@@ -37,7 +45,56 @@ class InterfaceBuilder {
         innerView.backgroundColor = UIColor.clear
         innerView.layer.borderColor = UIColor.black.cgColor
         innerView.layer.borderWidth = 1
+        
+        
+        
+        
+        
+        
+        
+        
+//adding first image
+        let imageView1 = UIImageView(image: .grad)
+        imageView1.contentMode = .scaleAspectFit
+        imageView1.translatesAutoresizingMaskIntoConstraints = false
+
+// Adding text
+        let label = UILabel()
+        label.text = "Hello"
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+       
+
+//         Adding objects on top of blur
+        blurEffectView.contentView.addSubview(imageView1)
+        blurEffectView.contentView.addSubview(label)
+
+        // Auto Layout
+        NSLayoutConstraint.activate([
+            imageView1.topAnchor.constraint(equalTo: blurEffectView.contentView.topAnchor, constant: 10),
+            imageView1.centerXAnchor.constraint(equalTo: blurEffectView.contentView.centerXAnchor),
+            imageView1.heightAnchor.constraint(equalToConstant: 50),
+            imageView1.widthAnchor.constraint(equalToConstant: 50),
+
+            label.topAnchor.constraint(equalTo: imageView1.bottomAnchor, constant: 10),
+            label.centerXAnchor.constraint(equalTo: blurEffectView.contentView.centerXAnchor),
+            label.leadingAnchor.constraint(equalTo: blurEffectView.contentView.leadingAnchor, constant: 10),
+            label.trailingAnchor.constraint(equalTo: blurEffectView.contentView.trailingAnchor, constant: -10),
+
+            
+        ])
     }
+    func setupOtherInnerViews() {
+        
+    }
+    func setupStaticObjects(){
+    }
+
+    
     
     func innerViewBuild() {
         return
@@ -51,8 +108,6 @@ class InterfaceBuilder {
     func innerViewToCenter(){
         return
     }
-    func staticObjectsBuild(){
-        return
-    }
+    
     
 }

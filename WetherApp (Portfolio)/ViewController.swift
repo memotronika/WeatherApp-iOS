@@ -11,17 +11,13 @@ class ViewController: UIViewController {
     var constants : Constants!
     var interfaceBuilder : InterfaceBuilder!
     var numberLabel = UILabel()
-    
-    @IBOutlet weak var firstInternalView: UIView!
-    
-    @IBOutlet weak var secondInternalView: UIView!
-    
-    @IBOutlet weak var thirdInternalView: UIView!
+    var cities : [String]!
     
     
     
     
-    var viewCounter = 5
+    
+    
     
     var internalViews : [String:UIView]!
     
@@ -36,8 +32,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        cities = ["london", "new york", "tokyo"]
         constants = Constants(view: self.view)
-        interfaceBuilder = InterfaceBuilder(constants: self.constants, view: self.view)
+        interfaceBuilder = InterfaceBuilder(constants: self.constants, view: self.view, innerViewsQuantity: cities.count)
         
 //        numberLabel.text = String(viewCounter)
 //        print("a")
@@ -94,7 +91,7 @@ class ViewController: UIViewController {
 //                    numberLabel.heightAnchor.constraint(equalToConstant: 50)
 //                ])
 //        ВОТ ДО СЮДА
-        interfaceBuilder.setupInnerView()
+        interfaceBuilder.setupInterface()
 
     }
 
@@ -187,121 +184,7 @@ class ViewController: UIViewController {
         view.layer.borderColor = UIColor.black.cgColor
         view.layer.borderWidth = 1
     }
-//    func createCustomView(frame: CGRect, image1: UIImage?, image2: UIImage?, text: String) -> UIView {
-//        
-//        let containerView = UIView(frame: frame)
-//        containerView.backgroundColor = UIColor.white
-//        containerView.layer.cornerRadius = 15
-//        containerView.layer.masksToBounds = true
-//        
-//        
-//        // Создаем первую картинку
-//        let imageView1 = UIImageView(image: image1)
-//        imageView1.contentMode = .scaleAspectFit
-//        imageView1.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        // Создаем текст
-//        let label = UILabel()
-//        label.text = text
-//        label.textColor = .black
-//        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-//        label.textAlignment = .center
-//        label.numberOfLines = 0
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//
-//        // Создаем вторую картинку
-//        let imageView2 = UIImageView(image: image2)
-//        imageView2.contentMode = .scaleAspectFit
-//        imageView2.translatesAutoresizingMaskIntoConstraints = false
-//
-//        // Добавляем элементы в контейнер
-//        containerView.addSubview(imageView1)
-//        containerView.addSubview(label)
-//        containerView.addSubview(imageView2)
-//
-//        // Настраиваем Auto Layout
-//        NSLayoutConstraint.activate([
-//            imageView1.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10),
-//            imageView1.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-//            imageView1.heightAnchor.constraint(equalToConstant: 50),
-//            imageView1.widthAnchor.constraint(equalToConstant: 50),
-//
-//            label.topAnchor.constraint(equalTo: imageView1.bottomAnchor, constant: 10),
-//            label.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-//            label.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
-//            label.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10),
-//
-//            imageView2.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10),
-//            imageView2.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-//            imageView2.heightAnchor.constraint(equalToConstant: 50),
-//            imageView2.widthAnchor.constraint(equalToConstant: 50),
-//
-//            imageView2.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10)
-//        ])
-//        
-//        return containerView
-//    }
-    func createBlurredCustomView(frame: CGRect, image1: UIImage?, image2: UIImage?, text: String) -> UIView {
-        let containerView = UIView(frame: frame)
-        containerView.backgroundColor = UIColor.clear
-        containerView.layer.cornerRadius = 15
-        containerView.layer.masksToBounds = true
-        containerView.layer.borderColor = UIColor.black.cgColor
-        containerView.layer.borderWidth = 1
-
-        // Создаем размытие
-        let blurEffect = UIBlurEffect(style: .regular)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = containerView.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        containerView.addSubview(blurEffectView)
-
-        // Создаем первую картинку
-        let imageView1 = UIImageView(image: image1)
-        imageView1.contentMode = .scaleAspectFit
-        imageView1.translatesAutoresizingMaskIntoConstraints = false
-
-        // Создаем текст
-        let label = UILabel()
-        label.text = text
-        label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-
-        // Создаем вторую картинку
-        let imageView2 = UIImageView(image: image2)
-        imageView2.contentMode = .scaleAspectFit
-        imageView2.translatesAutoresizingMaskIntoConstraints = false
-
-        // Добавляем элементы на размытый слой, а не напрямую в контейнер
-        blurEffectView.contentView.addSubview(imageView1)
-        blurEffectView.contentView.addSubview(label)
-        blurEffectView.contentView.addSubview(imageView2)
-
-        // Настраиваем Auto Layout
-        NSLayoutConstraint.activate([
-            imageView1.topAnchor.constraint(equalTo: blurEffectView.contentView.topAnchor, constant: 10),
-            imageView1.centerXAnchor.constraint(equalTo: blurEffectView.contentView.centerXAnchor),
-            imageView1.heightAnchor.constraint(equalToConstant: 50),
-            imageView1.widthAnchor.constraint(equalToConstant: 50),
-
-            label.topAnchor.constraint(equalTo: imageView1.bottomAnchor, constant: 10),
-            label.centerXAnchor.constraint(equalTo: blurEffectView.contentView.centerXAnchor),
-            label.leadingAnchor.constraint(equalTo: blurEffectView.contentView.leadingAnchor, constant: 10),
-            label.trailingAnchor.constraint(equalTo: blurEffectView.contentView.trailingAnchor, constant: -10),
-
-            imageView2.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10),
-            imageView2.centerXAnchor.constraint(equalTo: blurEffectView.contentView.centerXAnchor),
-            imageView2.heightAnchor.constraint(equalToConstant: 50),
-            imageView2.widthAnchor.constraint(equalToConstant: 50),
-
-            imageView2.bottomAnchor.constraint(equalTo: blurEffectView.contentView.bottomAnchor, constant: -10)
-        ])
-
-        return containerView
-    }
+//    
 }
 
 
