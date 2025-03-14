@@ -58,9 +58,6 @@
                             <constraint firstAttribute="bottom" secondItem="jbd-58-PbR" secondAttribute="bottom" id="hL3-WN-8X2"/>
                             <constraint firstAttribute="trailing" secondItem="j0i-8d-6jk" secondAttribute="trailing" constant="50" id="tGk-xf-o2c"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="IsE-ok-1RC" appends="YES" id="pDM-41-qf5"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="firstInternalView" destination="ewc-rZ-7WD" id="AGo-A8-F50"/>
@@ -69,11 +66,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="IsE-ok-1RC">
-                    <connections>
-                        <action selector="PanOfInternalView:" destination="BYZ-38-t0r" id="m7q-VE-4ne"/>
-                    </connections>
-                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="IsE-ok-1RC"/>
             </objects>
             <point key="canvasLocation" x="4.4776119402985071" y="-2.7459954233409607"/>
         </scene>
@@ -81,13 +74,13 @@
     <resources>
         <image name="grad" width="3080" height="1732"/>
         <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemIndigoColor">
-            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

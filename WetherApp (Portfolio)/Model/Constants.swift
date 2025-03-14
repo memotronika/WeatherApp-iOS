@@ -7,6 +7,23 @@
 import UIKit
 
 struct Constants {
-    static let insertSpace : UIEdgeInsets = .init(top: 120, left: 40, bottom: 50, right: 40)
-    static let cornerRadius : CGFloat = 28
+    let view : UIView
+    let sideGap : CGFloat
+    let topGap : CGFloat
+    let bottomGap : CGFloat
+    let cornerRadius : CGFloat
+
+    let insertSpace : UIEdgeInsets
+    init(view : UIView) {
+        self.view = view
+        self.sideGap = view.frame.width / 11
+        self.topGap = view .frame.height / 8
+        self.bottomGap = view.frame.height / 10
+        self.cornerRadius = view.frame.width / 20
+        self.insertSpace = .init(top: topGap, left: sideGap, bottom: bottomGap, right: sideGap)
+    }
+    
+    
+    
+//    let insertSpace : UIEdgeInsets = .init(top: 120, left: 40, bottom: 50, right: 40)
 }

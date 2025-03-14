@@ -7,18 +7,27 @@
 
 import UIKit
 class InterfaceBuilder {
-    public func setupInnerView(view: UIView, insert : UIEdgeInsets = .zero) {
+    
+    let constants : Constants!
+    let view : UIView!
+    init(constants: Constants, view: UIView) {
+        self.view = view
+        self.constants = constants
+        
+    }
+    
+    public func setupInnerView() {
         let innerView = UIView()
         innerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(innerView)
         
         NSLayoutConstraint.activate([
-            innerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: insert.left),
-            innerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -insert.right),
-            innerView.topAnchor.constraint(equalTo: view.topAnchor, constant: insert.top),
-            innerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -insert.bottom)
+            innerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: constants.sideGap),
+            innerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -constants.sideGap),
+            innerView.topAnchor.constraint(equalTo: view.topAnchor, constant: constants.topGap),
+            innerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -constants.bottomGap)
         ])
-        innerView.layer.cornerRadius = Constants.cornerRadius
+        innerView.layer.cornerRadius = constants.cornerRadius
         innerView.clipsToBounds = true
         let blurEffect = UIBlurEffect(style: .regular)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
