@@ -56,7 +56,7 @@ struct APIRequest {
                 cod: decodedData.cod
             )
         } catch {
-            print("Ошибка парсинга JSON: \(error)")
+            print("Json error: \(error)")
             return nil
         }
     }
