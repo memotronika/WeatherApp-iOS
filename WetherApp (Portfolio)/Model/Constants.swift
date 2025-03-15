@@ -12,6 +12,9 @@ struct Constants {
     let topGap : CGFloat
     let bottomGap : CGFloat
     let cornerRadius : CGFloat
+    let motherViewFrame : CGRect
+    let motherViewHeight : CGFloat
+    let motherViewWidth : CGFloat
 
     let insertSpace : UIEdgeInsets
     init(view : UIView) {
@@ -21,6 +24,9 @@ struct Constants {
         self.bottomGap = view.frame.height / 13
         self.cornerRadius = view.frame.width / 20
         self.insertSpace = .init(top: topGap, left: sideGap, bottom: bottomGap, right: sideGap)
+        self.motherViewFrame = view.frame
+        self.motherViewHeight = view.frame.height
+        self.motherViewWidth = view.frame.width
     }
     
     

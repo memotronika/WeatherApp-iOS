@@ -14,30 +14,23 @@ class ViewController: UIViewController {
     var cities : [String]!
     var mainInnerView : InnerView!
     var panGesture : UIPanGestureRecognizer!
-    
+    var apiObject : APIRequest!
     var internalViews : [InnerView]! = []
     var mainViewNumber : Int! = 0
     var container : UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        cities = ["london", "new york", "tokyo", "paris", "berlin"]
+        cities = ["London", "New York", "Paris", "Rome", "Moscow"]
+        
+        
         constants = Constants(view: self.view)
-        interfaceBuilder = InterfaceBuilder(constants: self.constants, view: self, innerViewsQuantity: cities.count)
+        interfaceBuilder = InterfaceBuilder(constants: self.constants, view: self, innerViewsQuantity: cities.count, cities: cities)
         interfaceBuilder.setupInterface()
         panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         mainInnerView.addGestureRecognizer(panGesture)
 
         
-
-        let api = APIRequest()
-        api.performRequest { weather in
-            if let weather = weather {
-                print("Температура: \(weather.temperature)°C")
-            } else {
-                print("Не удалось получить данные")
-            }
-        }
         
     }
     

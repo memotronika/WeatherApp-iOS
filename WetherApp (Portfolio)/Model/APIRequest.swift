@@ -34,11 +34,31 @@ struct APIRequest {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(WeatherData.self, from: weatherData)
-            let temp = decodedData.main.temp
-            return WeatherModel(temperature: temp ?? -273.15)
+            return WeatherModel(
+                city: decodedData.name,
+                temp: decodedData.main.temp,
+                humidity: decodedData.main.humidity,
+                pressure: decodedData.main.pressure,
+                sunrise: decodedData.sys.sunrise,
+                sunset: decodedData.sys.sunset,
+                windSpeed: decodedData.wind.speed,
+                windDirection: decodedData.wind.deg,
+                main: decodedData.main,
+                sys: decodedData.sys,
+                wind: decodedData.wind,
+                coord: decodedData.coord,
+                weather: decodedData.weather,
+                visibility: decodedData.visibility,
+                clouds: decodedData.clouds,
+                dt: decodedData.dt,
+                timezone: decodedData.timezone,
+                id: decodedData.id,
+                cod: decodedData.cod
+            )
         } catch {
             print("Ошибка парсинга JSON: \(error)")
             return nil
         }
     }
-}
+    }
+

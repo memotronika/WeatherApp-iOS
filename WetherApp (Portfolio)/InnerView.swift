@@ -21,6 +21,9 @@ class InnerView: UIView {
     var windSpeedLabel = UILabel()
     var windDirection : Int!
     
+    var sunriseImageView = UIImageView(image: UIImage(systemName: "sunrise.fill"))
+    var sunsetImageView = UIImageView(image: UIImage(systemName: "sunset.fill"))
+    
     var weatherImageView = UIImageView(image: UIImage(systemName: "star.fill"))
     
     init(viewNumber: Int) {
@@ -30,13 +33,13 @@ class InnerView: UIView {
         humidityLabel.text = "{placeholder humidity}"
         pressureLabel.text = "{pressure placeholder}"
         sunriseLabel.text = "{sunrise placeholder}"
-        sunsetLabel.text = "{wind speed placeholder}"
+        sunsetLabel.text = "{susnet placeholder}"
         windDirection = 499
         
         self.viewNumber = viewNumber
         
-           }
-           
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -46,6 +49,6 @@ class InnerView: UIView {
     
     
     
-       }
+}
 
 
