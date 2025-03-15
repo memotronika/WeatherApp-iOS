@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     
     var internalViews : [InnerView]! = []
     var mainViewNumber : Int! = 0
+    var container : UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -44,6 +44,32 @@ class InterfaceBuilder {
     }
     
     func setupStaticObjects(){
+        
+        
+        viewController.container = UIStackView()
+        viewController.container.axis = .horizontal
+        viewController.container.distribution = .equalCentering
+        viewController.container.alignment = .center
+        viewController.container.spacing = 12
+        viewController.view.addSubview(viewController.container)
+        let containerWidth : CGFloat =  24 * CGFloat(innerViewsQuantity)+5
+        
+        viewController.container.frame = CGRect(x: (viewController.view.frame.width-containerWidth)/2, y: viewController.view.frame.height*0.935, width: containerWidth, height: 12)
+        for imageNr in 0..<self.innerViewsQuantity {
+            var image : UIImageView!
+            if imageNr == 0 {
+                image = UIImageView(image: UIImage(systemName: "location.fill" ))
+                image.tintColor = .white
+            }
+            else {
+                image = UIImageView(image: UIImage(systemName: "circle.fill" ))
+                image.tintColor = .black
+                
+            }
+            
+            image.contentMode = .scaleAspectFit
+            viewController.container.addArrangedSubview(image)
+        }
     }
 
     func setupOneOtherInnerView(viewNr : Int) {
@@ -140,6 +166,15 @@ class InterfaceBuilder {
             }
             self.viewController.mainInnerView.isUserInteractionEnabled = true
             self.viewController.mainInnerView.addGestureRecognizer(self.viewController.panGesture)
+            for i in 0..<self.viewController.container.subviews.count{
+                if i == self.viewController.mainInnerView.viewNumber{
+                    let whiteImage = self.viewController.container.subviews[i] as! UIImageView
+                    whiteImage.tintColor = .white
+                }else{
+                    let blackImage = self.viewController.container.subviews[i] as! UIImageView
+                    blackImage.tintColor = .black
+                }
+            }
         }
     }
 }
