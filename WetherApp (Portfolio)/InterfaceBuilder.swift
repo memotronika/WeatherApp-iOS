@@ -61,6 +61,17 @@ class InterfaceBuilder {
     func setupStaticObjects(){
         let containerWidth : CGFloat =  25 * CGFloat(innerViewsQuantity)
         
+        let heartImageView : UIImageView! = UIImageView(image: UIImage(systemName: "heart"))
+        heartImageView.tintColor = .white
+        heartImageView.contentMode = .scaleAspectFit
+        viewController.view.addSubview(heartImageView)
+        viewController.heartImageView = heartImageView
+        
+        
+        
+
+        
+        
         viewController.container = UIStackView()
         viewController.container.axis = .horizontal
         viewController.container.distribution = .equalCentering
@@ -196,6 +207,7 @@ class InterfaceBuilder {
         view.sunsetLabel.textAlignment = .center
         view.sunsetLabel.numberOfLines = 0
         view.sunsetLabel.font = UIFont.systemFont(ofSize: CGFloat(view.cityLabel.frame.height / 2), weight: .medium)
+        
 
     }
     func innerViewToMax(){

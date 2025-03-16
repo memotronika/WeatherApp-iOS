@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     var internalViews : [InnerView]! = []
     var mainViewNumber : Int! = 0
     var container : UIStackView!
+    var heartImageView : UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,14 @@ class ViewController: UIViewController {
 
         
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.heartImageView.frame = CGRect(x: self.view.safeAreaInsets.top,
+                                              y: self.view.safeAreaInsets.top,
+                                              width: self.view.frame.height / 27 * 2,
+                                              height: self.view.frame.height / 27 * 2)
     }
     
     
