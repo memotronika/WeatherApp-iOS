@@ -56,16 +56,21 @@ class InterfaceBuilder {
         }
     }
     
-    
-    
+    @objc func heartPressed(){
+        print("heart")
+    }
     func setupStaticObjects(){
         let containerWidth : CGFloat =  25 * CGFloat(innerViewsQuantity)
         
-        let heartImageView : UIImageView! = UIImageView(image: UIImage(systemName: "heart"))
+        let heartImageView = UIImageView(image: UIImage(systemName: "heart"))
         heartImageView.tintColor = .white
         heartImageView.contentMode = .scaleAspectFit
         viewController.view.addSubview(heartImageView)
         viewController.heartImageView = heartImageView
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(heartPressed))
+        heartImageView.isUserInteractionEnabled = true 
+        heartImageView.addGestureRecognizer(tapGesture)
         
         
         
