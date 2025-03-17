@@ -48,7 +48,6 @@ struct APIRequest {
                 wind: decodedData.wind,
                 coord: decodedData.coord,
                 weather: decodedData.weather,
-                visibility: decodedData.visibility,
                 clouds: decodedData.clouds,
                 dt: decodedData.dt,
                 timezone: decodedData.timezone,

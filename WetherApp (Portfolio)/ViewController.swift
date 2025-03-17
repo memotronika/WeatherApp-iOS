@@ -22,8 +22,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        cities = ["London", "New York", "Paris", "Rome", "Moscow"]
-        ifCities()
+        cities = ifCities()
         
         
         constants = Constants(view: self.view)
@@ -64,15 +63,17 @@ class ViewController: UIViewController {
     
     
     
-    func ifCities() {
+    func ifCities() -> [String] {
         let defaults = UserDefaults.standard
 
-        if let cities = defaults.array(forKey: "сities") as? [String] {
-            print("Массив Cities найден: \(cities)")
+        if let cities = defaults.stringArray(forKey: "cities") {
+            print(cities)
+            return cities
         } else {
             print("Массив Cities отсутствует в UserDefaults, создаем новый.")
             defaults.set([], forKey: "сities")
             defaults.synchronize()
+            return []
         }
     }
   

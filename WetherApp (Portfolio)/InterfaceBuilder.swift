@@ -26,10 +26,40 @@ class InterfaceBuilder {
         
     }
     public func setupInterface() {
+//        UserDefaults.standard.set(["London", "Paris", "New York", "Rome", "Moscow"], forKey: "cities")
         setupMainInnerView()
         setupOtherInnerViews()
         fillViews()
         setupStaticObjects()
+        updateHeart()
+    }
+    
+    func updateHeart() {
+//        print(UserDefaults.standard.stringArray(forKey: "cities"))
+        if (UserDefaults.standard.stringArray(forKey: "cities"))?.contains(viewController.mainInnerView.cityLabel.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "") == true {
+            viewController.heartImageView.image = UIImage(systemName: "heart.fill")
+        }
+        else {
+            viewController.heartImageView.image = UIImage(systemName: "heart")
+        }
+    }
+    
+    func fillViews() {
+        for cityNr in 0..<cities.count {
+            apiObject.performRequest(city: cities[cityNr]) { weather in
+                DispatchQueue.main.async {
+                    if let weather = weather {
+                        self.viewController.internalViews[cityNr].cityLabel.text = " \(self.cities[cityNr])"
+                        self.viewController.internalViews[cityNr].temperatureLabel.text = "\(round(weather.temp))°C"
+                        self.viewController.internalViews[cityNr].sunriseLabel.text = self.convertUnixTimeToReadable(weather.sunrise, weather.timezone)
+                        self.viewController.internalViews[cityNr].sunsetLabel.text = self.convertUnixTimeToReadable(weather.sunset,weather.timezone)
+                        self.updateHeart()
+                    } else {
+                        print("Не удалось получить данные")
+                    }
+                }
+            }
+        }
     }
     
     
@@ -56,9 +86,22 @@ class InterfaceBuilder {
         }
     }
     
-    @objc func heartPressed(){
-        print("heart")
+    @objc func heartPressed() {
+        let defaults = UserDefaults.standard
+        let city = viewController.mainInnerView.cityLabel.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        
+        var cities = defaults.stringArray(forKey: "cities") ?? []
+        
+        if let index = cities.firstIndex(where: { $0.trimmingCharacters(in: .whitespacesAndNewlines) == city }) {
+            cities.remove(at: index)
+        } else {
+            cities.append(city)
+        }
+        
+        defaults.set(cities, forKey: "cities")
+        updateHeart()
     }
+    
     func setupStaticObjects(){
         let containerWidth : CGFloat =  25 * CGFloat(innerViewsQuantity)
         
@@ -71,6 +114,7 @@ class InterfaceBuilder {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(heartPressed))
         heartImageView.isUserInteractionEnabled = true 
         heartImageView.addGestureRecognizer(tapGesture)
+        
         
         
         
@@ -261,27 +305,12 @@ class InterfaceBuilder {
                     blackImage.tintColor = .black
                 }
             }
+            self.updateHeart()
         }
         
     }
     
-    func fillViews() {
-        for cityNr in 0..<cities.count {
-            apiObject.performRequest(city: cities[cityNr]) { weather in
-                DispatchQueue.main.async {
-                    if let weather = weather {
-                        self.viewController.internalViews[cityNr].cityLabel.text = " \(self.cities[cityNr])"
-                        self.viewController.internalViews[cityNr].temperatureLabel.text = "\(round(weather.temp))°C"
-                        self.viewController.internalViews[cityNr].sunriseLabel.text = self.convertUnixTimeToReadable(weather.sunrise, weather.timezone)
-                        self.viewController.internalViews[cityNr].sunsetLabel.text = self.convertUnixTimeToReadable(weather.sunset,weather.timezone)
-                        print((weather.sunrise))
-                    } else {
-                        print("Не удалось получить данные")
-                    }
-                }
-            }
-        }
-    }
+    
     
     func convertUnixTimeToReadable(_ timestamp: Int, _ timezone : Int = 0) -> String {
         let date = Date(timeIntervalSince1970: TimeInterval(timestamp + timezone))

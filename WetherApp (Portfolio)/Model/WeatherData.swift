@@ -15,7 +15,6 @@ struct WeatherData: Codable {
     let wind: WeatherModel.Wind
     let coord: WeatherModel.Coord
     let weather: [WeatherModel.Weather]
-    let visibility: Int
     let clouds: WeatherModel.Clouds
     let dt: Int
     let timezone: Int

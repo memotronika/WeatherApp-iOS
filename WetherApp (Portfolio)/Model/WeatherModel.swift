@@ -20,7 +20,6 @@ struct WeatherModel: Codable {
     let wind: Wind
     let coord: Coord
     let weather: [Weather]
-    let visibility: Int
     let clouds: Clouds
     let dt: Int
     let timezone: Int
